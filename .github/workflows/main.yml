@@ -1,7 +1,11 @@
 on: [push]
 
 jobs:
-  hello_world_job:
+  initialize:
+    runs-on: ubuntu-20.04
+    steps:
+      - run: "running initialize"
+  job1:
     runs-on: ubuntu-20.04
     name: A job to say hello
     steps:
@@ -12,7 +16,7 @@ jobs:
         who-to-greet: 'Mona the Octocat'
     - name: Get the output time
       run: echo "END OF JOB1"
-  goodbye_world_job:
+  job2:
     runs-on: ubuntu-20.04
     name: A job to say goodbye
     steps:
@@ -23,3 +27,9 @@ jobs:
         who-to-greet: 'John the Bard'
     - name: Get the output time
       run: echo "END OF JOB 2"
+  finalize:
+    if: always()
+    needs: [job1, job2]
+    runs-on: ubuntu-20.04
+    steps:
+      -run: echo "running finalize"
