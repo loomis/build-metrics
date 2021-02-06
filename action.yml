@@ -6,10 +6,9 @@ inputs:
     required: true
     default: 'World'
 outputs:
-  time:
-    description: 'The time we greeted you'
-  random-id: 
-    description: 'A random number'
+  random-number: 
+    description: 'random number'
+    value: ${{ step.random-number-generator.outputs.random-id }}
 runs:
   using: 'composite'
   steps:
