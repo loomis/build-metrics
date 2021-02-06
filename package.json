@@ -19,6 +19,7 @@
   },
   "homepage": "https://github.com/loomis/build-metrics#readme",
   "dependencies": {
+    "@actions/artifact": "^0.5.0",
     "@actions/core": "^1.2.6",
     "@actions/github": "^4.0.0",
     "@opentelemetry/core": "^0.16.0",
