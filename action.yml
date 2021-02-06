@@ -5,18 +5,8 @@ inputs:
     description: 'Who to greet'
     required: true
     default: 'World'
-outputs:
-  random-number: 
-    description: 'random number'
-    value: ${{ steps.random-number-generator.outputs.random-id }}
 runs:
-  using: 'composite'
-  steps:
-    - run: echo Hello ${{ inputs.who-to-greet }}.
-      shell: bash
-    - id: random-number-generator
-      run: echo "::set-output name=random-id::$(echo $RANDOM)"
-      shell: bash
-    - run: ${{ github.action_path }}/goodbye.sh
-      shell: bash
-#  main: 'dist/index.js'
+  using: 'node12'
+  pre: 'dist/setup/index.js'
+  main: 'dist/main/index.js'
+  post: 'dist/cleanup/index.js'
