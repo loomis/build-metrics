@@ -6,16 +6,17 @@ inputs:
     required: true
     default: 'World'
 outputs:
-  time: # id of output
+  time:
     description: 'The time we greeted you'
-  random-id: # random number
+  random-id: 
+    description: 'A random number'
 runs:
   using: 'composite'
   steps:
     - run: echo Hello ${{ inputs.who-to-greet }}.
       shell: bash
     - id: random-number-generator
-      echo "::set-output name=random-id::$(echo $RANDOM)"
+      run: echo "::set-output name=random-id::$(echo $RANDOM)"
       shell: bash
     - run: ${{ github.action_path }}/goodbye.sh
       shell: bash
