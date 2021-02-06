@@ -1,0 +1,27 @@
+{
+  "name": "build-metrics",
+  "version": "1.0.0",
+  "description": "github action that uses opentelemetry to generate build metrics",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/loomis/build-metrics.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/loomis/build-metrics/issues"
+  },
+  "homepage": "https://github.com/loomis/build-metrics#readme",
+  "dependencies": {
+    "@actions/core": "^1.2.6",
+    "@actions/github": "^4.0.0",
+    "@opentelemetry/core": "^0.16.0",
+    "@opentelemetry/exporter-collector-proto": "^0.16.0",
+    "@opentelemetry/node": "^0.16.0"
+  }
+}
