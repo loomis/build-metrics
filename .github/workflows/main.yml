@@ -4,19 +4,19 @@ jobs:
   initialize:
     runs-on: ubuntu-20.04
     steps:
-      uses: loomis/build-metrics@main
+      - uses: loomis/build-metrics@main
   job1:
     needs: initialize
     runs-on: ubuntu-20.04
     steps:
-    - uses: loomis/build-metrics@main
-    - run: echo "END OF JOB 1"
+      - uses: loomis/build-metrics@main
+      - run: echo "END OF JOB 1"
   job2:
     needs: initialize
     runs-on: ubuntu-20.04
     steps:
-    - uses: loomis/build-metrics@main
-    - run: echo "END OF JOB 2"
+      - uses: loomis/build-metrics@main
+      - run: echo "END OF JOB 2"
   finalize:
     if: always()
     needs: [job1, job2]
