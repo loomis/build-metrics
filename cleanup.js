@@ -42,3 +42,16 @@ try {
 (async function () {
   const uploadResponse = await artifactClient.uploadArtifact(file, [file], ".");
 }());
+
+// now create the trace for the build
+if (finalize) {
+  (async function() {
+    const downloadResponse = await artifactClient.downloadAllArtifacts();
+  }());
+  
+  // output result
+  for (response in downloadResponse) {
+      console.log(response.artifactName);
+      console.log(response.downloadPath);
+  }
+}
