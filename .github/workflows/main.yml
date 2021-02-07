@@ -11,6 +11,9 @@ jobs:
     steps:
       - uses: loomis/build-metrics@main
       - run: echo "END OF JOB 1"
+      - uses: loomis/build-metrics@main
+        with:
+          finalize: false
   job2:
     needs: initialize
     runs-on: ubuntu-20.04
