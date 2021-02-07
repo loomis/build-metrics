@@ -17,27 +17,23 @@ const contents = `${jobStart}, ${jobStop}, ${delta}\n`;
 // const payload = JSON.stringify(github.context.payload, undefined, 2);
 // console.log(`event payload:\n${payload}`);
 
-if (finalize) {
-  // create the trace and send it to console and GRPC
-} else {
-  // save job information as an artifact
-  const artifactClient = artifact.create();
-  const artifactName = 'build-metrics-job-info';
-  const jobID = github.context.job.jobID;
-  const path = `./${jobID}`;
-  const file = `${jobID}-${artifactName}`
+// save job information as an artifact
+const artifactClient = artifact.create();
+const artifactName = 'build-metrics-job-info';
+const jobID = github.context.job.jobID;
+const path = `./${jobID}`;
+const file = `${jobID}-${artifactName}`
 
-  (async function() {
-    await io.mkdirP(path);
-  }());
+(async function() {
+  await io.mkdirP(path);
+}());
 
-  try {
-    const data = fs.writeFileSync(file, contents);
-  } catch (err) {
-    console.error(err);
-  }
-
-  (async function () {
-    const uploadResponse = await artifactClient.uploadArtifact(artifactName, [file], ".");
-  }());
+try {
+  const data = fs.writeFileSync(file, contents);
+} catch (err) {
+  console.error(err);
 }
+
+(async function () {
+  const uploadResponse = await artifactClient.uploadArtifact(artifactName, [file], ".");
+}());
