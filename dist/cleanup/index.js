@@ -29,7 +29,7 @@ const artifactClient = artifact.create();
 const artifactName = 'build-metrics-job-info';
 const jobID = github.context.job.jobID;
 const path = `./${jobID}`;
-const file = `${jobID}-${artifactName}`
+const file = `${jobID}-${artifactName}`;
 
 (async function() {
   await io.mkdirP(path);
