@@ -10,6 +10,6 @@ const delta = jobStop - jobStart;
 console.log(`job timing: ${jobStart}, ${jobStop}, ${delta}`);
 
 // Get the JSON webhook payload for the event that triggered the workflow
-const payload = JSON.stringify(github.context.payload, undefined, 2)
+const payload = JSON.stringify(github.context.payload, undefined, 2);
 console.log(`event payload:\n${payload}`);
 
