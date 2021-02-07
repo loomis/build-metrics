@@ -3,7 +3,8 @@ on: [push]
 jobs:
   initialize:
     runs-on: ubuntu-20.04
-    uses: loomis/build-metrics@main
+    steps:
+      uses: loomis/build-metrics@main
   job1:
     needs: initialize
     runs-on: ubuntu-20.04
