@@ -47,11 +47,12 @@ try {
 if (finalize) {
   (async function() {
     const downloadResponse = await artifactClient.downloadAllArtifacts();
-  }());
-  
-  // output result
-  for (response in downloadResponse) {
+
+    // output result
+    for (response in downloadResponse) {
       console.log(response.artifactName);
       console.log(response.downloadPath);
-  }
+    }
+  }());
+  
 }
