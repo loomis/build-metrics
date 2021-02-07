@@ -1,10 +1,13 @@
-name: 'Hello World'
-description: 'Greet someone and record the time'
+name: 'OpenTelemetry Build Metrics'
+description: 'generates OpenTelemetry build metrics for GitHub actions'
 inputs:
-  who-to-greet:  # id of input
-    description: 'Who to greet'
+  finalize:
+    description: 'whether to finalize metrics'
     required: true
-    default: 'World'
+    default: false
+outputs:
+  jobStartTimestamp:
+    description: 'starting timestamp (in ms) for job'
 runs:
   using: 'node12'
   pre: 'dist/setup/index.js'

@@ -23,6 +23,7 @@
     "@actions/core": "^1.2.6",
     "@actions/github": "^4.0.0",
     "@opentelemetry/core": "^0.16.0",
+    "@opentelemetry/exporter-collector-grpc": "^0.16.0",
     "@opentelemetry/exporter-collector-proto": "^0.16.0",
     "@opentelemetry/node": "^0.16.0"
   }

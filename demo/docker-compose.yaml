@@ -1,0 +1,11 @@
+version: "2"
+services:
+  collector:
+    image: r1k8sacrdev.azurecr.io/maas/otelcontribcol:r1-main-alpine
+    command: ["--config=/etc/webhook.yaml", ""]
+    volumes: 
+      - ./webhook.yaml:/etc/webhook.yaml
+    ports:
+      - "4317:4317"
+      - "55681:55681"
+    restart: always

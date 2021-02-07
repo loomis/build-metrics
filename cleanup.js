@@ -1,7 +1,7 @@
 const core = require('@actions/core');
 
-try {
-  console.log(`Cleanup script running!`);
-} catch (error) {
-  core.setFailed(error.message);
-}
+const finalize = core.getInput('finalize')
+console.log("finalize: ", finalize);
+
+const state = core.getState("state");
+console.log("state: ", state);
