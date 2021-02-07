@@ -21,9 +21,13 @@ const contents = `${jobStart}, ${jobStop}, ${delta}\n`;
 // save job information as an artifact
 const artifactClient = artifact.create();
 const artifactName = 'build-metrics-job-info';
-const jobID = github.context.job.jobID;
+const jobID = github.context.job;
 const path = `./${jobID}`;
 const file = `${jobID}-${artifactName}`;
+
+console.log("context: ", github.context);
+console.log("job:", github.context.job);
+console.log("job_id", github.context.job.job_id);
 
 (async function() {
   await io.mkdirP(path);
