@@ -56,8 +56,8 @@ if (finalize == "YES") {
     const downloadResponse = await artifactClient.downloadAllArtifacts();
 
     console.log("DOWNLOADING ARTIFACTS");
-    
-    for (response in downloadResponse) {
+
+    for (const response of downloadResponse) {
       console.log(downloadResponse);
       console.log(response);
       console.log(response.artifactName);
