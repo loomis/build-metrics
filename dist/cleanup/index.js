@@ -9,6 +9,7 @@ const core = __nccwpck_require__(3788);
 const github = __nccwpck_require__(4225);
 const artifact = __nccwpck_require__ (4796);
 const io = __nccwpck_require__(3973);
+const fs = __nccwpck_require__(5747);
 
 const finalize = core.getInput('finalize')
 console.log("finalize: ", finalize);
