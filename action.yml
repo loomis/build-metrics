@@ -5,11 +5,11 @@ inputs:
     description: 'whether to finalize metrics'
     required: true
     default: false
-outputs:
-  jobStartTimestamp:
-    description: 'starting timestamp (in ms) for job'
+  endpoint:
+    description: 'GRPC endpoint of OpenTelemetry Collector'
+    required: true
+    default: "localhost:4317"
 runs:
   using: 'node12'
   pre: 'dist/setup/index.js'
-  main: 'dist/main/index.js'
   post: 'dist/cleanup/index.js'
