@@ -51,7 +51,7 @@ try {
 }());
 
 // now create the trace for the build
-if (finalize) {
+if (finalize == "YES") {
   (async function() {
     const downloadResponse = await artifactClient.downloadAllArtifacts();
 

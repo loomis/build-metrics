@@ -4,7 +4,7 @@ inputs:
   finalize:
     description: 'whether to finalize metrics'
     required: true
-    default: false
+    default: 'NO'
   endpoint:
     description: 'GRPC endpoint of OpenTelemetry Collector'
     required: true

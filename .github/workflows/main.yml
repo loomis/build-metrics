@@ -24,4 +24,4 @@ jobs:
     steps:
       - uses: loomis/build-metrics@main
         with:
-          finalize: true
+          finalize: 'YES'
