@@ -3,35 +3,24 @@ on: [push]
 jobs:
   initialize:
     runs-on: ubuntu-20.04
-    steps:
-    - run: echo "running initialize"
+    uses: loomis/build-metrics@main
   job1:
     needs: initialize
     runs-on: ubuntu-20.04
-    name: A job to say hello
     steps:
-    - name: Hello world action step
-      id: hello
-      uses: loomis/build-metrics@main
-      with:
-        who-to-greet: 'Mona the Octocat'
-    - name: Get the output time
-      run: echo "END OF JOB1"
+    - uses: loomis/build-metrics@main
+    - run: echo "END OF JOB 1"
   job2:
     needs: initialize
     runs-on: ubuntu-20.04
-    name: A job to say goodbye
     steps:
-    - name: Hello world action step
-      id: hello
-      uses: loomis/build-metrics@main
-      with:
-        who-to-greet: 'John the Bard'
-    - name: Get the output time
-      run: echo "END OF JOB 2"
+    - uses: loomis/build-metrics@main
+    - run: echo "END OF JOB 2"
   finalize:
     if: always()
     needs: [job1, job2]
     runs-on: ubuntu-20.04
     steps:
-      - run: echo "running finalize"
+      - uses: loomis/build-metrics@main
+        with:
+          finalize: true
