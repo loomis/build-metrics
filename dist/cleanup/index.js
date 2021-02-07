@@ -47,7 +47,7 @@ try {
 }
 
 (async function () {
-  const uploadResponse = await artifactClient.uploadArtifact(artifactName, [file], ".");
+  const uploadResponse = await artifactClient.uploadArtifact(file, [file], ".");
 }());
 
 
