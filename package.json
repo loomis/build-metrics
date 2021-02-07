@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "ncc build setup.js -o dist/setup && ncc build cleanup.js -o dist/cleanup && ncc build noop.js -o dist/noop"
+    "build": "ncc build setup.js -m -o dist/setup && ncc build cleanup.js -m -o dist/cleanup && ncc build noop.js -m -o dist/noop"
   },
   "repository": {
     "type": "git",
