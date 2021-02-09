@@ -25,22 +25,16 @@ const contents = JSON.stringify(metrics);
 
 // save job information as an artifact
 const artifactClient = artifact.create();
-const dir = `build-metrics`;
-const file = `${job}`;
-const path = `${dir}/${file}`;
-
-(async function() {
-  await io.mkdirP(dir);
-}());
+const file = `build-metrics-${job}`;
 
 try {
-  fs.writeFileSync(path, contents);
+  fs.writeFileSync(file, contents);
 } catch (err) {
   console.error(err);
 }
 
 (async function () {
-  const uploadResponse = await artifactClient.uploadArtifact(file, [path], ".");
+  const uploadResponse = await artifactClient.uploadArtifact(file, [file], ".");
   console.log(`upload-response: ${uploadResponse}`);
 }());
 
