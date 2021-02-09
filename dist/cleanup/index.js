@@ -33,7 +33,7 @@ const contents = JSON.stringify(metrics);
 // save job information as an artifact
 const artifactClient = artifact.create();
 const dir = `./build-metrics`;
-const file = `${jobID}`;
+const file = `${job}`;
 const path = `${dir}/${file}`;
 
 (async function() {
