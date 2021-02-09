@@ -32,7 +32,7 @@ const contents = JSON.stringify(metrics);
 
 // save job information as an artifact
 const artifactClient = artifact.create();
-const dir = `./build-metrics`;
+const dir = `build-metrics`;
 const file = `${job}`;
 const path = `${dir}/${file}`;
 
@@ -41,7 +41,7 @@ const path = `${dir}/${file}`;
 }());
 
 try {
-  const data = fs.writeFileSync(path, contents);
+  fs.writeFileSync(path, contents);
 } catch (err) {
   console.error(err);
 }
