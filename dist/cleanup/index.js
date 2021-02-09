@@ -11,15 +11,20 @@ const artifact = __nccwpck_require__ (4796);
 const io = __nccwpck_require__(3973);
 const fs = __nccwpck_require__(5747);
 
-const finalize = core.getInput('finalize')
-console.log("finalize: ", finalize);
+const job = github.context.job;
+const start = core.getState("jobStart");
+const stop = Date.now();
+const duration = stop - start;
+console.log(`job timing: ${start}, ${stop}, ${duration}`);
 
-const jobStart = core.getState("jobStart");
-const jobStop = Date.now();
-const delta = jobStop - jobStart;
-console.log(`job timing: ${jobStart}, ${jobStop}, ${delta}`);
+metrics = {
+  "job": job,
+  "start": start,
+  "stop": stop,
+  "duration": duration,
+}
 
-const contents = `${jobStart}, ${jobStop}, ${delta}\n`;
+const contents = JSON.stringify(metrics);
 
 // Get the JSON webhook payload for the event that triggered the workflow
 // const payload = JSON.stringify(github.context.payload, undefined, 2);
@@ -27,41 +32,37 @@ const contents = `${jobStart}, ${jobStop}, ${delta}\n`;
 
 // save job information as an artifact
 const artifactClient = artifact.create();
-const artifactName = 'build-metrics-job-info';
-const jobID = github.context.job;
-const path = `./${jobID}`;
-const file = `${jobID}-${artifactName}`;
-
-console.log("context: ", github.context);
-console.log("job:", github.context.job);
-console.log("job_id", github.context.job.job_id);
+const dir = `./build-metrics`;
+const file = `${jobID}`;
+const path = `${dir}/${file}`;
 
 (async function() {
-  await io.mkdirP(path);
+  await io.mkdirP(dir);
 }());
 
 try {
-  const data = fs.writeFileSync(file, contents);
+  const data = fs.writeFileSync(path, contents);
 } catch (err) {
   console.error(err);
 }
 
 (async function () {
-  const uploadResponse = await artifactClient.uploadArtifact(file, [file], ".");
+  const uploadResponse = await artifactClient.uploadArtifact(file, [file], dir);
+  console.log(`upload-response: ${uploadResponse}`);
 }());
+
+const finalize = core.getInput('finalize')
+console.log("finalize: ", finalize);
 
 // now create the trace for the build
 if (finalize == "YES") {
   (async function() {
     const downloadResponse = await artifactClient.downloadAllArtifacts();
 
-    console.log("DOWNLOADING ARTIFACTS");
-
     for (const response of downloadResponse) {
-      console.log(downloadResponse);
-      console.log(response);
-      console.log(response.artifactName);
       console.log(response.downloadPath);
+      const timing = JSON.parse(fs.readFileSync(response.downloadPath));
+      console.log(timing);
     }
   }());
   
